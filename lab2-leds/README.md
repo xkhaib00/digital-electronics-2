@@ -52,17 +52,7 @@ R = \frac{V_{SUPPLY}-V_{LED}}{I} = \frac{5-2,2}{20\cdot 10^{-3}} = 140 \Omega
 
 3. Draw the basic ways to connect a push button to the microcontroller input pin: button active-low, button active-high.
 
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
+![DU2](images/du2_2.PNG)
 
 <a name="part1"></a>
 
