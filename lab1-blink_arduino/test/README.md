@@ -13,11 +13,11 @@ int main(void)
     while (1)                        // Nekonecna smycka
     {
         digitalWrite(LED_RED, 0);    // Vypnuti LED 
-        _delay_ms(DELAY);            // Zpozdeni 250 ms
+        _delay_ms(DELAY);            // Zpozdeni 250 ms (mezi signaly)
         digitalWrite(LED_RED, 1);    // Zapnuti LED
         _delay_ms(SHORT_DELAY);      // Zpozdeni 500 ms
         digitalWrite(LED_RED, 0);
-        _delay_ms(DELAY);
+        _delay_ms(DELAY);            // Zpozdeni 250 ms (mezi signaly)
         digitalWrite(LED_RED, 1);
         _delay_ms(LONG_DELAY);       // Zpozdeni 1000 ms
         digitalWrite(LED_RED, 0);
