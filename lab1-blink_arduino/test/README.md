@@ -8,19 +8,23 @@
 ```c
 int main(void)
 {
-    // Set pin where on-board LED is connected as output
-    pinMode(LED_GREEN, OUTPUT);
-
-    // Infinite loop
-    while (1)
+    pinMode(LED_RED, OUTPUT);        // Nastaveni pinu LED_RED (PB0 8) na vystup
+    
+    while (1)                        // Nekonecna smycka
     {
-        // Generate a lettre `A` Morse code
-
-        // WRITE YOUR CODE HERE
+        digitalWrite(LED_RED, 0);    // Vypnuti LED 
+        _delay_ms(DELAY);            // Zpozdeni 250 ms
+        digitalWrite(LED_RED, 1);    // Zapnuti LED
+        _delay_ms(SHORT_DELAY);      // Zpozdeni 500 ms
+        digitalWrite(LED_RED, 0);
+        _delay_ms(DELAY);
+        digitalWrite(LED_RED, 1);
+        _delay_ms(LONG_DELAY);       // Zpozdeni 1000 ms
+        digitalWrite(LED_RED, 0);
+        _delay_ms(2500);             // Zpozdeni po zobrazeni pismana 'A'
 
     }
 
-    // Will never reach this
     return 0;
 }
 ```
