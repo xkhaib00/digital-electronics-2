@@ -22,7 +22,7 @@
 /* Includes ----------------------------------------------------------*/
 #include <avr/io.h>     // AVR device-specific IO definitions
 #include <util/delay.h> // Functions for busy-wait delay loops
-
+#include <gpio.h>
 
 // -----
 // This part is needed to use Arduino functions but also physical pin
@@ -45,10 +45,13 @@ int main(void)
 
             // Set pin where on-board LED is connected as output
     //pinMode(LED_GREEN, OUTPUT);
-    DDRB |= (1<<LED_GREEN);           //<---------------------
+    //DDRB |= (1<<LED_GREEN);
+    GPIO_mode_output(&DDRB, LED_GREEN);
+
             // Set second pin as output
     //pinMode(LED_RED, OUTPUT);
-    DDRB |= (1<<LED_RED);             //<---------------------
+    //DDRB |= (1<<LED_RED);    
+    GPIO_mode_output(&DDRB, LED_RED);
 
     // Infinite loop
     while (1)
@@ -56,20 +59,26 @@ int main(void)
         
               // Turn ON/OFF on-board LED ...
         //digitalWrite(LED_GREEN, led_value);
-        PORTB |= (1<<LED_GREEN);           //<---------------------
+        //PORTB |= (1<<LED_GREEN);           // NASTAVIM
+        GPIO_write_low(&PORTB, LED_GREEN);
+
               // ... and external LED as well
         //digitalWrite(LED_RED, led_value);
-        PORTB |= (1<<LED_RED);           //<---------------------
+        //PORTB |= (1<<LED_RED); 
+        GPIO_write_low(&PORTB, LED_RED);          
 
         _delay_ms(SHORT_DELAY);
 
-        PORTB &= ~(1<<LED_GREEN);
-        PORTB &= ~(1<<LED_RED);
+        GPIO_write_high(&PORTB, LED_GREEN);
+        GPIO_write_high(&PORTB, LED_RED);
+
+        //PORTB &= ~(1<<LED_GREEN);         //SMAZU
+        //PORTB &= ~(1<<LED_RED);
 
         _delay_ms(SHORT_DELAY);
 
-        PORTB ^= (1<<LED_GREEN);
-        PORTB ^= (1<<LED_RED);
+        //PORTB ^= (1<<LED_GREEN);          //INVERTUJI
+        //PORTB ^= (1<<LED_RED);
 
       /*
 
