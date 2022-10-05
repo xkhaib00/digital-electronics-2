@@ -1,4 +1,7 @@
-DDRB |= (1<<LED_GREEN);           //<---------------------
+     #define PB5 5          // In Arduino world, PB5 is called "13"
+     #define PB0 0
+     
+     DDRB |= (1<<LED_GREEN);           //<---------------------
             // Set second pin as output
     //pinMode(LED_RED, OUTPUT);
     DDRB |= (1<<LED_RED);             //<---------------------
