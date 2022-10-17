@@ -75,9 +75,9 @@ T/C0 and T/C2 are 8-bit timers, where T/C1 is a 16-bit timer. The counter counts
 
    | **Module** | **Operation** | **I/O register(s)** | **Bit(s)** |
    | :-: | :-- | :-: | :-- |
-   | Timer/Counter0 | Prescaler<br><br>8-bit data value<br>Overflow interrupt enable | <br>TCCR0B<br>TCNT0<br>TIMSK0 | <br><br><br> |
+   | Timer/Counter0 | Prescaler<br><br>8-bit data value<br>Overflow interrupt enable | TCCR0B<br><br>TCNT0<br>TIMSK0 | <br><br><br> |
    | Timer/Counter1 | Prescaler<br><br>16-bit data value<br>Overflow interrupt enable | TCCR1B<br><br>TCNT1H, TCNT1L<br>TIMSK1 | CS12, CS11, CS10<br>(000: stopped, 001: 1, 010: 8, 011: 64, 100: 256, 101: 1024)<br>TCNT1[15:0]<br>TOIE1 (1: enable, 0: disable) |
-   | Timer/Counter2 | Prescaler<br><br>8-bit data value<br>Overflow interrupt enable | <br>TCCR2B<br>TCNT2<br>TIMSK2 | <br><br><br> |
+   | Timer/Counter2 | Prescaler<br><br>8-bit data value<br>Overflow interrupt enable | TCCR2B<br><br>TCNT2<br>TIMSK2 | <br><br><br> |
 
 2. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/03-interrupts/main.c) to `LAB3-INTERRUPTS_TIMER > src > main.c` source file.
 
