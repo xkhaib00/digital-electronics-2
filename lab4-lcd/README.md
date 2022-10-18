@@ -48,17 +48,17 @@ The purpose of the laboratory exercise is to understand the serial control of Hi
    | :-: | :-: | :-: |
    | `A` | 65 | 0x41 |
    | `B` | 66 | 0x42 |
-   | `|` |  |  |
+   |  |  |  |
    | `Z` | 90 | 0x5A |
    | ... |  |  |
    | `a` | 97 | 0x61 |
    | `b` | 98 | 0x62 |
-   | `|` |  |  |
+   |  |  |  |
    | `z` | 122 | 0x7A |
    | ... |  |  |
    | `0` | 48 | 0x30 |
    | `1` | 49 | 0x31 |
-   | `|` |  |  |
+   |  |  |  |
    | `9` | 57 | 0x39 |
 
 <a name="part1"></a>
