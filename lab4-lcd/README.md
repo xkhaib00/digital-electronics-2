@@ -36,25 +36,30 @@ The purpose of the laboratory exercise is to understand the serial control of Hi
    | **LCD signal(s)** | **AVR pin(s)** | **Description** |
    | :-: | :-: | :-- |
    | RS | PB0 | Register selection signal. Selection between Instruction register (RS=0) and Data register (RS=1) |
-   | R/W |  |  |
-   | E |  |  |
-   | D[3:0] |  |  |
-   | D[7:4] |  |  |
-   | K |  |  |
+   | R/W | GND | Identifies read or write operation |
+   | E | PB1 | A trigger signal whose edge synchronizes the communication on the bus |
+   | D[3:0] | D0 - D3 | Data bus line |
+   | D[7:4] | D4 - D7 | Data bus line. Upper nibble used in 4-bit mode |
+   | K | PB2 | Backlight Cathode |
 
 2. What is the ASCII table? What are the codes/values for uppercase letters `A` to `Z`, lowercase letters `a` to `z`, and numbers `0` to `9` in this table?
 
    | **Char** | **Decimal** | **Hexadecimal** |
    | :-: | :-: | :-: |
    | `A` | 65 | 0x41 |
-   | `B` |  |  |
+   | `B` | 66 | 0x42 |
+   | ... |  |  |
+   | `Z` | 90 | 0x5A |
    | ... |  |  |
    | `a` | 97 | 0x61 |
-   | `b` |  |  |
+   | `b` | 98 | 0x62 |
+   | ... |  |  |
+   | `z` | 122 | 0x7A |
    | ... |  |  |
    | `0` | 48 | 0x30 |
-   | `1` |  |  |
+   | `1` | 49 | 0x31 |
    | ... |  |  |
+   | `9` | 57 | 0x39 |
 
 <a name="part1"></a>
 
