@@ -65,12 +65,12 @@ int main(void)
               // ... and external LED as well
         //digitalWrite(LED_RED, led_value);
         //PORTB |= (1<<LED_RED); 
-        GPIO_write_low(&PORTB, LED_RED);          
+        GPIO_write_high(&PORTB, LED_RED);          
 
         _delay_ms(SHORT_DELAY);
 
         GPIO_write_high(&PORTB, LED_GREEN);
-        GPIO_write_high(&PORTB, LED_RED);
+        GPIO_write_low(&PORTB, LED_RED);
 
         //PORTB &= ~(1<<LED_GREEN);         //SMAZU
         //PORTB &= ~(1<<LED_RED);
