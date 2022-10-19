@@ -339,7 +339,7 @@ extern void lcd_puts_p(const char *progmem_s);
  * @param    cmd instruction to send to LCD controller, see HD44780 data sheet
  * @return   none
  */
-extern void lcd_command(uint8_t cmd);
+extern void lcd_command(uint8_t cmd); //<--------------- Rika cipu co ma delat. Poslu na nejakou pozici
 
 
 /**
@@ -349,7 +349,7 @@ extern void lcd_command(uint8_t cmd);
  * @param    data byte to send to LCD controller, see HD44780 data sheet
  * @return   none
  */
-extern void lcd_data(uint8_t data);
+extern void lcd_data(uint8_t data); //<--------------- Poslu timto data
 
 
 /**
