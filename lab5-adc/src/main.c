@@ -40,19 +40,27 @@ int main(void)
 
     // Configure Analog-to-Digital Convertion unit
     // Select ADC voltage reference to "AVcc with external capacitor at AREF pin"
+    ADMUX |=  (1<<REFS0);      // nastaveni na 1
+    ADMUX &= ~(1<<REFS1);     // 0
 
     // Select input channel ADC0 (voltage divider pin)
+    ADMUX &= ~((1<<MUX3) | (1<<MUX2) | (1<<MUX1) | (1<<MUX0));
 
     // Enable ADC module
+    ADCSRA |= (1<<ADEN);
 
     // Enable conversion complete interrupt
+    ADCSRA |= (1<<ADIE);
 
     // Set clock prescaler to 128
+    ADCSRA |= ((1<<ADPS0) | (1<<ADPS1) | (1<<ADPS1));
 
 
     // Configure 16-bit Timer/Counter1 to start ADC conversion
     // Set prescaler to 33 ms and enable overflow interrupt
-
+    TIM1_overflow_33ms();
+    TIM1_overflow_interrupt_enable();
+    
 
     // Enables interrupts by setting the global interrupt mask
     sei();
@@ -77,6 +85,7 @@ int main(void)
 ISR(TIMER1_OVF_vect)
 {
     // Start ADC conversion
+    ADCSRA |= (1<<ADSC);
 }
 
 /**********************************************************************
@@ -87,9 +96,71 @@ ISR(ADC_vect)
 {
     uint16_t value;
     char string[4];  // String for converted numbers by itoa()
-
+    
     // Read converted value
     // Note that, register pair ADCH and ADCL can be read as a 16-bit value ADC
     value = ADC;
+    //lcd_clrscr();
+
     // Convert "value" to "string" and display it
+    itoa(value,string, 10);   // Prevod na 10 cislo
+    lcd_gotoxy(8, 0);         // Jdeme na souradnice 8, 0
+    lcd_puts("    ");         // Vycisteni
+    lcd_gotoxy(8, 0);
+    lcd_puts(string);         // Vypisujeme zadanou hodnotu
+
+    itoa(value,string, 16);   
+    lcd_gotoxy(13, 0);        
+    lcd_puts("   ");         
+    lcd_gotoxy(13, 0);
+    lcd_puts(string);
+
+
+    itoa(value,string, 10);
+    lcd_gotoxy(8, 1);
+    lcd_puts("     ");
+
+    if (value < 5)
+    {
+     lcd_puts("     ");
+     lcd_gotoxy(8, 1);
+     lcd_puts("Right"); 
+
+    }
+    else if (value >= 98 & value <= 103)
+    {
+     lcd_puts("     ");
+     lcd_gotoxy(8, 1);
+     lcd_puts("Up"); 
+
+    }
+    else if (value >= 250 & value <= 260)
+    {
+     lcd_puts("     ");
+     lcd_gotoxy(8, 1);
+     lcd_puts("Down");  
+
+    }
+    else if (value >= 405 & value <= 415)
+    {
+     lcd_puts("     ");
+     lcd_gotoxy(8, 1);
+     lcd_puts("Left");  
+
+    }
+    else if (value >= 635 & value <= 645)
+    {
+     lcd_puts("     ");
+     lcd_gotoxy(8, 1);
+     lcd_puts("Select");  
+
+    }
+    else
+    {
+     lcd_puts("     ");
+     lcd_gotoxy(8, 1);
+     lcd_puts("None");  
+
+    }
+    
 }
