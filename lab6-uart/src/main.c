@@ -46,8 +46,9 @@ int main(void)
     sei();
 
     // Put strings to ringbuffer for transmitting via UART
-    uart_puts("Print one line...TRY ");
-    uart_puts("done\r\n");                // vypise radek a /New Line
+    uart_puts("Zadejte cislo: ");
+    uart_puts("\r\n");                // vypise radek a /New Line
+    
 
     // Infinite loop
     while (1)
@@ -71,22 +72,34 @@ ISR(TIMER1_OVF_vect)
     char string[8];  // String for converted numbers by itoa()
 
     value = uart_getc();
+    
+
     if (value != '\0') {  // Data available from UART
         // Display ASCII code of received character
         // WRITE YOUR CODE HERE
-        uart_puts("Send char: ");
-        uart_putc(value);
-        uart_puts("\tDec: ");
-        itoa(value, string, 10);
-        uart_puts(string);
         
-        uart_puts("\tHex: ");
-        itoa(value, string, 16);
-        uart_puts(string);
+        uart_putc(value);
 
-        uart_puts("\tBin: ");
-        itoa(value, string, 2);
-        uart_puts(string);
+        //itoa(value, string, 10);
+        //uart_puts(string);
+        if (value == '1'){
+          uart_puts("\r\n");
+          uart_puts("Zadal jste cislo 1 ");
+          uart_puts("\r\n");
+        }
+        else if (value == '2'){
+          uart_puts("\r\n");
+          uart_puts("Zadal jste cislo 2 ");
+          uart_puts("\r\n");
+        }
+        else{
+          uart_puts("\r\n");
+          uart_puts("Zadal jste: ");
+          value = uart_getc();
+          uart_puts("\r\n");
+        } 
+        
+
 
 
 
