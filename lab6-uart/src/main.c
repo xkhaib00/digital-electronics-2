@@ -39,14 +39,15 @@ int main(void)
     
     // Configure 16-bit Timer/Counter1 to transmit UART data
     // Set prescaler to 262 ms and enable overflow interrupt
-    
+    TIM1_overflow_262ms();
+    TIM1_overflow_interrupt_enable();
     
     // Enables interrupts by setting the global interrupt mask
     sei();
 
     // Put strings to ringbuffer for transmitting via UART
-    uart_puts("Print one line... ");
-    uart_puts("done\r\n");
+    uart_puts("Print one line...TRY ");
+    uart_puts("done\r\n");                // vypise radek a /New Line
 
     // Infinite loop
     while (1)
@@ -66,5 +67,29 @@ int main(void)
  **********************************************************************/
 ISR(TIMER1_OVF_vect)
 {
-    // Transmit UART string(s)
+    uint8_t value;
+    char string[8];  // String for converted numbers by itoa()
+
+    value = uart_getc();
+    if (value != '\0') {  // Data available from UART
+        // Display ASCII code of received character
+        // WRITE YOUR CODE HERE
+        uart_puts("Send char: ");
+        uart_putc(value);
+        uart_puts("\tDec: ");
+        itoa(value, string, 10);
+        uart_puts(string);
+        
+        uart_puts("\tHex: ");
+        itoa(value, string, 16);
+        uart_puts(string);
+
+        uart_puts("\tBin: ");
+        itoa(value, string, 2);
+        uart_puts(string);
+
+
+
+        uart_puts("\r\n");
+    }
 }
