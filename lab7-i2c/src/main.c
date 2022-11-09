@@ -27,6 +27,8 @@
 #include <stdlib.h>         // C library. Needed for number conversions
 
 
+
+
 /* Function definitions ----------------------------------------------*/
 /**********************************************************************
  * Function: Main function where the program execution begins
@@ -45,7 +47,7 @@ int main(void)
 
     // Configure 16-bit Timer/Counter1 to test one I2C address
     // Set prescaler to 33 ms and enable interrupt
-    TIM1_overflow_33ms();
+    TIM1_overflow_262ms();
     TIM1_overflow_interrupt_enable();
 
     // Enables interrupts by setting the global interrupt mask
@@ -73,15 +75,114 @@ int main(void)
  **********************************************************************/
 ISR(TIMER1_OVF_vect)
 {
-    static uint8_t sla = 8;  // I2C Slave address
+    static uint8_t sla = 92;  // I2C Slave address
     uint8_t ack;             // ACK response from Slave
     char string[3];          // String for converting numbers by itoa()
 
+    /* Global variables --------------------------------------------------*/
+    // Declaration of "air" variable with structure "Air_parameters_structure"
+    static struct Air_parameters_structure {
+    uint8_t humid_int;
+    uint8_t humid_dec;
+    uint8_t temp_int;
+    uint8_t temp_dec;
+    uint8_t checksum;
+    } air;
+
     // Start communication, transmit I2C Slave address, get result,
     // and Stop communication
+    
+   
     ack = twi_start(sla, TWI_WRITE);
+    twi_write(0x00);
     twi_stop();
+    ack = twi_start(sla, TWI_READ);
+    air.humid_int = twi_read_nack(); 
+    twi_stop();
+    uart_puts("Vlhkost: ");
+    itoa(air.humid_int, string, 10);
+    uart_puts(string);
+    uart_puts(".");
+
+    ack = twi_start(sla, TWI_WRITE);
+    twi_write(0x01);
+    twi_stop();
+    ack = twi_start(sla, TWI_READ);
+    air.humid_dec = twi_read_nack();
+    itoa(air.humid_dec, string, 10);
+    uart_puts(string);   
+    uart_puts("% ");    
+
+    
+    ack = twi_start(sla, TWI_WRITE);
+    twi_write(0x02);
+    twi_stop();
+    ack = twi_start(sla, TWI_READ);
+    air.temp_int = twi_read_nack(); 
+    twi_stop();
+    uart_puts("  Teplota: ");
+    itoa(air.temp_int, string, 10);
+    uart_puts(string);
+    uart_puts(".");
+
+    ack = twi_start(sla, TWI_WRITE);
+    twi_write(0x03);
+    twi_stop();
+    ack = twi_start(sla, TWI_READ);
+    air.temp_dec = twi_read_nack(); 
+    twi_stop();
+    itoa(air.temp_dec, string, 10);
+    uart_puts(string);   
+    uart_puts("°C ");
+    //uart_puts("\r\n");
+
+    ack = twi_start(sla, TWI_WRITE);
+    twi_write(0x04);
+    twi_stop();
+    ack = twi_start(sla, TWI_READ);
+    air.checksum = twi_read_nack(); 
+    twi_stop();
+
+    uart_puts("  Soucet: ");
+    itoa(air.checksum, string, 10);
+    uart_puts(string);   
+    uart_puts("\r\n");
+    
+
+    /*
+    ack = twi_start(sla, TWI_WRITE);
+    twi_write(0x01);
+    twi_stop();
+
+    ack = twi_start(sla, TWI_READ);
+    air.humid_int = twi_read_ack();
+    twi_stop();
+
+    uart_puts("Vlhkost: ");
+    itoa(air.humid_int, string, 10);
+    uart_puts(string);   
+    uart_puts("\r\n");
+    */
+
+
+    /*
 
     // Test ACK/NACK value obtained from I2C bus and send info to UART
     
+    if (sla < 120) {
+    
+    //uart_puts("\r\n");
+    ack = twi_start(sla, TWI_WRITE);
+    twi_stop();
+
+        if (ack == 0){
+            uart_puts("Adresa zarizeni: ");
+            itoa(sla,string, 10);
+            uart_puts(string);   
+            uart_puts("\r\n");         
+        }
+    sla++;
+    }
+    */
+
 }
