@@ -1,4 +1,4 @@
-# Lab 7: INSERT_YOUR_FIRSTNAME INSERT_YOUR_LASTNAME
+# Lab 7: Rishat KHAIBULLIN
 
 ### Arduino Uno pinout
 
