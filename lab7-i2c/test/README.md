@@ -10,7 +10,7 @@
    * SPI pins
    * external interrupt pins INT0, INT1
 
-   ![your figure](digital-electronics-2/lab7-i2c/test/Du71.png)
+   ![your figure](Du71.png)
 
 ### I2C communication
 
