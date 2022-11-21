@@ -6,7 +6,7 @@
 
    | **Instruction** | **Binary opcode** | **Hex opcode** | **Compiler Hex opcode** |
    | :-- | :-: | :-: | :-: |
-   | `add r24, r0` |  |  |  |
+   | `add r24, r0` | 0000_11rd_dddd_rrrr |  |  |
    | `com r26` |  |  |  |
    | `eor r26, r27` |  |  |  |
    | `mul r22, r20` |  |  |  |
