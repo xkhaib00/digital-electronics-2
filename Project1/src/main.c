@@ -48,7 +48,7 @@ int encoder0Pos = 0;
 int main(void)
 {
 
-    //Проверка
+    Проверка
     //1
     /* TRYY
     // Custom character definition using https://omerk.github.io/lcdchargen/
