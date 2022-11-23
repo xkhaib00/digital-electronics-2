@@ -50,7 +50,7 @@ int main(void)
 
     
     
-    /*
+    /* TRYY
     // Custom character definition using https://omerk.github.io/lcdchargen/
     uint8_t customChar[8] = {
         0b00111,
