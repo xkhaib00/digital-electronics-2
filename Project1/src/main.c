@@ -48,8 +48,8 @@ int encoder0Pos = 0;
 int main(void)
 {
 
-    
-    1
+    //Проверка
+    //1
     /* TRYY
     // Custom character definition using https://omerk.github.io/lcdchargen/
     uint8_t customChar[8] = {
