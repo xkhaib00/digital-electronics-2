@@ -33,6 +33,10 @@
 #include <lcd.h>            // Peter Fleury's LCD library
 #include <stdlib.h>         // C library. Needed for number conversions
 
+#define encoder0PinA 11
+#define encoder0PinB 12
+#define encoder0Btn 10
+int encoder0Pos = 0;
 
 /* Function definitions ----------------------------------------------*/
 /**********************************************************************
@@ -44,6 +48,8 @@
 int main(void)
 {
 
+    
+    
     /*
     // Custom character definition using https://omerk.github.io/lcdchargen/
     uint8_t customChar[8] = {
@@ -212,10 +218,14 @@ int main(void)
     lcd_putc('!');        // Zapis symbolu
     */ 
     
+    lcd_gotoxy(0, 0);
+    lcd_putc(0xf0); // Vypise retezec Sloupec potom Radek
+    
+    
 
     
 
-
+    /*
     // Configuration of 8-bit Timer/Counter2 for Stopwatch update
     // Set the overflow prescaler to 16 ms and enable interrupt
     TIM2_overflow_16ms();
@@ -234,7 +244,7 @@ int main(void)
     0b11110, 0b11110, 0b11110, 0b11110, 0b11110, 0b11110, 0b11110, 0b11110,
     // addr 4: |||||
     0b11111, 0b11111, 0b11111, 0b11111, 0b11111, 0b11111, 0b11111, 0b11111,
-    };
+    };*/
 
     // Enables interrupts by setting the global interrupt mask
     sei();
