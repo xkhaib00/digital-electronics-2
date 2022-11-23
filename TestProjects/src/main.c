@@ -1,9 +1,7 @@
 #include <avr/io.h>     
 #include <util/delay.h>
-
 #include <Arduino.h>
 
-//int led PD2 D2;
 #define LED PD2 
 //#define PD2 D2
 
