@@ -23,9 +23,9 @@ int main(void) {
 
   while (1){
     digitalWrite(LED, led_value2);
-    _delay_ms(300);
+    /*_delay_ms(300);
     digitalWrite(LED, led_value);
-    _delay_ms(1000);
+    _delay_ms(1000);*/
 
   }
 
