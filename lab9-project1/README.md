@@ -29,8 +29,8 @@ The goal of the project is cooperation in pairs, further study of the topic, des
 
 ### Team members
 
-* Member 1 (responsible for xxx)
-* Member 2 (responsible for xxx)
+* Rishat Khaibullin (responsible for making joystick and LCD part of project)
+* Marian Dvořáček (responsible for making encoder and LCD part of project)
 
 ## Hardware description
 
