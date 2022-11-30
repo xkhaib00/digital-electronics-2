@@ -37,6 +37,11 @@ In function `ISR(TIMER1_OVF_vect)`, first of all, ADC conversion for the joystic
 In function `ISR(ADC_vect)`, you first need to display a symbol, which we will change later. This was implemented with a `marker` that changes to a value that will never be reached, so this condition will only be processed once at the start of the program.
 Next, it processes the ADC conversion of two channels in turn using the `switch...case` condition. First, the stream from the ADC0 channel is configured (value `ADMUX = 0b01000000`), then ADC conversion takes place. The joystick sends two analog signals ranging from `0` to `1024`. When the joystick is in neutral position, these parameters are approximately `511`. In this way, we can determine the direction along the axis. By changing the ADC conversion channels, we change the direction of the x, y coordinate axes. At the end of each case condition, the next channel (AD2, `ADMUX = 0b01000001`) is configured. This way we can control more analog pins. When driving, the symbol on the display should not go beyond the LCD display (16x2). For this, a condition was set up when, when increasing the value of `line` 16 and higher, the cursor returned to the corner position. When moving to the left, this value is 255 because the type of the variable is `uint8_t`. Each ADC conversion processing is accompanied by a blinking LED for clarity. Also, the position of the cursor is written out in the internal terminal by `UART`.
 
+![1](images/pos1.jpeg) ![1](images/UART1.PNG)
+
+![2](images/pos2.jpeg) ![2](images/UART2.PNG)
+
+
 ## Video
 
 Insert a link to a short video with your practical implementation example (1-3 minutes, e.g. on YouTube).
