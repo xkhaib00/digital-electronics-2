@@ -7,7 +7,7 @@
 #include <uart.h>           // Peter Fleury's UART library
 #include <util/delay.h>     // Functions for busy-wait delay loops
 
-#define SW   PD2            // Pin D2  - For button on Joystick
+#define SW   PD2            // Pin D2  - Digital pin for button on Joystick
 #define LED  PB5            // Pin D13 - LED indicate
 #define PINX PC0            // Pin A0  - Analog pin for X coordinate of Joystick
 #define PINY PC1            // Pin A1  - Analog pin for Y coordinate of Joystick
