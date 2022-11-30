@@ -34,9 +34,8 @@ The goal of the project is cooperation in pairs, further study of the topic, des
 
 ## Hardware description
 
-Insert descriptive text and schematic(s) of your implementation.
-
 The main goal of our project was to study the use of given components and create a common system.
+
 In this project, we used:
 1. Arduino UNO
 2. Joy-stick (2 ADC channels, 1 push button)
@@ -44,6 +43,9 @@ In this project, we used:
 4. Digilent PmodCLP LCD module
 5. LED
 6. Resistor (around 150 ohm)
+
+The Arduino served as the core of the project. The joystick moves the cursor/symbol on the LCD display size 16x2. By turning the encoder, the user can select different symbol from the ASCII table. It is worth noting that when choosing symbols, there are no custom symbols that are initially empty. When you press the enecoder button, the value of the symbol is returned to the beginning of the list for convenience, i.e. to the symbol `!`. When you press the joystick button, the value of this given character will appear on the screen, in our case it is the character `0xef`. Also in the project was used LED with a resistor to indicate the operation of the ADC conversion.
+
 
 ![Sketch](images/Sketch1.png)
 
