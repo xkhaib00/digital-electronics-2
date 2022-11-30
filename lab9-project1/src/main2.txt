@@ -8,7 +8,7 @@
 #include <util/delay.h>     // Functions for busy-wait delay loops
 
 #define SW   PD2            // Pin D2  - For button on Joystick
-#define LED  PB5            // Pin D12 - LED indicate
+#define LED  PB4            // Pin D12 - LED indicate
 #define PINX PC0            // Pin A0  - Analog pin for X coordinate of Joystick
 #define PINY PC1            // Pin A1  - Analog pin for Y coordinate of Joystick
 
@@ -36,7 +36,6 @@
     uint8_t symbol = 0x2a;                      // Symbol value
     uint8_t line = 0;                           // Constant for LCD lines (0-15)                              | uint8_t range is 0 to 255
     uint8_t column = 0;                         // Constant for LCD columns (0-1)
-    uint8_t pinALast;
 
 int main(void)
 {
@@ -49,8 +48,7 @@ int main(void)
     GPIO_mode_input_nopullup(&DDRB, DT);
     GPIO_mode_input_nopullup(&DDRB, CLK);
 
-    pinALast = GPIO_read(&PINB, CLK);   // last value of CLK pin    pinALast
-
+    
     uart_init(UART_BAUD_SELECT(9600, F_CPU));   // Initialize USART to asynchronous, 8N1, 9600
     lcd_init(LCD_DISP_ON);                      // Initialize LCD display without any cursor
 
@@ -98,8 +96,8 @@ int main(void)
 
 ISR(TIMER1_OVF_vect)
 {    
-    ADCSRA |= (1<<ADSC);    // Start ADC conversion   
-   
+    ADCSRA |= (1<<ADSC);    // Start ADC conversion
+    uint8_t pinALast = GPIO_read(&PINB, CLK);   // last value of CLK pin    pinALast
     
     uint8_t aVal;               // actual value of CLK pin
         aVal = GPIO_read(&PINB, CLK);
@@ -107,36 +105,32 @@ ISR(TIMER1_OVF_vect)
         if (!GPIO_read(&PINB, SW1))              // Joystick button reading condition
         {
         GPIO_write_high(&PORTB, LED);       // Turning on the LED (just indicate that button is pressed)
-        
-        symbol = 0x21;
-        }
-        if (aVal != pinALast){          //the knob is rotating, if the knob is rotating, we need to determine direction, We do that by reading pin B.
-            if (GPIO_read(&PINB, DT) != aVal) {         // Means pin A Changed first - We're Rotating Clockwise
-                if(symbol < 0xff) {
+
+        lcd_gotoxy(line, column);           
+        lcd_putc(0xef);                     // Writing the definite symbol
+         }
+        if (aVal != pinALast){  //the knob is rotating, if the knob is rotating, we need to determine direction, We do that by reading pin B.
+            if (GPIO_read(&PINB, DT) != aVal) { // Means pin A Changed first - We're Rotating Clockwise
+                if(symbol < 255) {
                     symbol++;
                 }
                 else {
-                    symbol = 0x21;
+                    symbol = 0;
                 }
             } 
             else {  // Otherwise B changed first and we're moving CCW
-                if(symbol > 0x21) {
+                if(symbol > 0) {
                     symbol--;
                 }
                 else {
-                    symbol = 0xff;
+                    symbol = 255;
                 }
             }
             pinALast = aVal;
-            //lcd_clrscr();
-            //lcd_gotoxy(line, column);
-            //lcd_putc(symbol);
+            lcd_clrscr();
+            lcd_gotoxy(line, column);
+            lcd_putc(symbol);
         }
-
-        lcd_gotoxy(line, column);           
-        lcd_putc(symbol);                     // Writing the definite symbol
-         
-        
 }
 
 /**********************************************************************
@@ -163,7 +157,7 @@ ISR(ADC_vect)
         lcd_gotoxy(line, column);           // Going to x,y position on LCD, 16x2
         lcd_putc(symbol);                   // Writes a symbol to the designated cell 
     }
-
+/*
     if (!GPIO_read(&PIND, SW))              // Joystick button reading condition
     {
         GPIO_write_high(&PORTB, LED);       // Turning on the LED (just indicate that button is pressed)
@@ -171,7 +165,7 @@ ISR(ADC_vect)
         lcd_gotoxy(line, column);           
         lcd_putc(0xef);                     // Writing the definite symbol
     }
-
+*/
     switch (ADMUX)                          // Important condition, which needs to define ports between ADC0 and ADC1 for ADC Conversion (it's all a last digit) 
     {
         case 0b01000000:                    // Turning on the port ADC0 that has amount 0100 0000

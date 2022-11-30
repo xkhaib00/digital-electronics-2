@@ -8,22 +8,14 @@
 #include <util/delay.h>     // Functions for busy-wait delay loops
 
 #define SW   PD2            // Pin D2  - For button on Joystick
-#define LED  PB5            // Pin D12 - LED indicate
+#define LED  PB4            // Pin D12 - LED indicate
 #define PINX PC0            // Pin A0  - Analog pin for X coordinate of Joystick
 #define PINY PC1            // Pin A1  - Analog pin for Y coordinate of Joystick
 
-#define SW1  PB2            // Pin D10 - Digital pin for button on encoder
-#define DT   PB3            // Pin D11 - Digital pin for DT encoder pin
-#define CLK  PB4            // Pin D12 - Digital pin for CLK encoder pin
-
-// #define PD2 2               // Pin D2
-// #define PB4 4               // Pin D12 
-// #define PC0 0               // Pin A0
-// #define PC1 1               // Pin A1
-
-// #define PB2 10              // Pin D10
-// #define PB3 11              // Pin D11
-// #define PB4 12              // Pin D12
+#define PD2 2               // Pin D2
+#define PB4 4               // Pin D12 
+#define PC0 0               // Pin A0
+#define PC1 1               // Pin A1
 
 
 /* Main function -----------------------------------------------------*/
@@ -32,24 +24,12 @@
  * Using Timer/Counter1, intterrupts and starting infinit loop
  **********************************************************************/
 
-    // global variables
-    uint8_t symbol = 0x2a;                      // Symbol value
-    uint8_t line = 0;                           // Constant for LCD lines (0-15)                              | uint8_t range is 0 to 255
-    uint8_t column = 0;                         // Constant for LCD columns (0-1)
-    uint8_t pinALast;
-
 int main(void)
 {
     GPIO_mode_input_pullup(&DDRD, SW);          // Set pin for Joystick Button, where on-board LED is connected as input with pullup resistor
     GPIO_mode_input_pullup(&DDRC, PINX);        // Set pin X coordinate of Joystick, where on-board LED is connected as input with pullup resistor
     GPIO_mode_input_pullup(&DDRC, PINY);        // Set pin Y coordinate of Joystick, where on-board LED is connected as input with pullup resistor
     GPIO_mode_output(&DDRB, LED);               // Set pin for LED, where on-board LED is connected as output
-
-    GPIO_mode_input_pullup(&DDRB, SW1);
-    GPIO_mode_input_nopullup(&DDRB, DT);
-    GPIO_mode_input_nopullup(&DDRB, CLK);
-
-    pinALast = GPIO_read(&PINB, CLK);   // last value of CLK pin    pinALast
 
     uart_init(UART_BAUD_SELECT(9600, F_CPU));   // Initialize USART to asynchronous, 8N1, 9600
     lcd_init(LCD_DISP_ON);                      // Initialize LCD display without any cursor
@@ -82,8 +62,9 @@ int main(void)
 
     // Infinite loop
     while (1)       
-    {    
-        
+    {
+        /* Empty loop. All subsequent operations are performed exclusively
+         * inside interrupt service routines ISRs */
     }
 
     // Will never reach this
@@ -98,45 +79,7 @@ int main(void)
 
 ISR(TIMER1_OVF_vect)
 {    
-    ADCSRA |= (1<<ADSC);    // Start ADC conversion   
-   
-    
-    uint8_t aVal;               // actual value of CLK pin
-        aVal = GPIO_read(&PINB, CLK);
-
-        if (!GPIO_read(&PINB, SW1))              // Joystick button reading condition
-        {
-        GPIO_write_high(&PORTB, LED);       // Turning on the LED (just indicate that button is pressed)
-        
-        symbol = 0x21;
-        }
-        if (aVal != pinALast){          //the knob is rotating, if the knob is rotating, we need to determine direction, We do that by reading pin B.
-            if (GPIO_read(&PINB, DT) != aVal) {         // Means pin A Changed first - We're Rotating Clockwise
-                if(symbol < 0xff) {
-                    symbol++;
-                }
-                else {
-                    symbol = 0x21;
-                }
-            } 
-            else {  // Otherwise B changed first and we're moving CCW
-                if(symbol > 0x21) {
-                    symbol--;
-                }
-                else {
-                    symbol = 0xff;
-                }
-            }
-            pinALast = aVal;
-            //lcd_clrscr();
-            //lcd_gotoxy(line, column);
-            //lcd_putc(symbol);
-        }
-
-        lcd_gotoxy(line, column);           
-        lcd_putc(symbol);                     // Writing the definite symbol
-         
-        
+    ADCSRA |= (1<<ADSC);    // Start ADC conversion
 }
 
 /**********************************************************************
@@ -151,7 +94,10 @@ ISR(ADC_vect)
     GPIO_read(&PINC, PINY);                 // Reading value (voltage) from Joystick Y coordinate
     GPIO_write_low(&PORTB, LED);            // Turning off LED port or low level
     
+    static uint8_t line = 0;                // Constant for LCD lines (0-15)                              | uint8_t range is 0 to 255
+    static uint8_t column = 0;              // Constant for LCD columns (0-1)
     static uint8_t marker = 0;              // One time using constant for position of first symbol 
+    static uint8_t symbol = 0x2a;           // Symbol value
     
     uint16_t value;                         // Constant which shows 2 direction for ADC (0-1024)          | uint16_t range is 0 to 32 767
     char string[4];                         // String for converted numbers by itoa() | ADC conversion
