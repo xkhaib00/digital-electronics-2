@@ -32,7 +32,7 @@ In this project, libraries were used that were previously used in past labs. The
 
 After assigning all the pins used, defining global constants, as well as connecting all the necessary libraries, the main function follows. In the main function, the pin mode is assigned as input or output, then the register for ADC conversion is also assigned, Timer1 is turned on with a prescaler of 33 ms, as well as an interrupt. At the end, the program ends with an endless loop, where the functions `ISR(TIMER1_OVF_vect)` and `ISR(ADC_vect)` are processed.
 
-
+In function `ISR(TIMER1_OVF_vect)`, first of all, ADC conversion for the joystick is started, then there is a part that processes the values from the encoder. In the `main.c` function, the initial value of the `pinALast` encoder was written, which we later compare with the output data. If the signal changes from pin A come first, then we are moving clockwise, if from B, then against. With each movement of the encoder, we increase or decrease the `symbol` value, which is subsequently displayed on the LCD. If the encoder button is pressed, the `symbol` value is changed to the first value, in our case it is `!`.
 
 ## Video
 
