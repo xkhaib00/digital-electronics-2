@@ -31,14 +31,19 @@ The goal of the project is cooperation in pairs, further study of the topic, des
 
 * Rishat Khaibullin (responsible for making joystick and LCD part of project)
 * Marian Dvořáček (responsible for making encoder and LCD part of project)
-## General description
-
-
-
 
 ## Hardware description
 
 Insert descriptive text and schematic(s) of your implementation.
+
+The main goal of our project was to study the use of given components and create a common system.
+In this project, we used:
+1. Arduino UNO
+2. Joy-stick (2 ADC channels, 1 push button)
+3. Rotary encoder (2 digital channels, 1 push button)
+4. Digilent PmodCLP LCD module
+5. LED
+6. Resistor (around 150 ohm)
 
 ![Sketch](images/Sketch1.png)
 
