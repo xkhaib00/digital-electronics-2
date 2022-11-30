@@ -31,6 +31,10 @@ The goal of the project is cooperation in pairs, further study of the topic, des
 
 * Rishat Khaibullin (responsible for making joystick and LCD part of project)
 * Marian Dvořáček (responsible for making encoder and LCD part of project)
+## General description
+
+
+
 
 ## Hardware description
 
