@@ -40,6 +40,8 @@ The goal of the project is cooperation in pairs, further study of the topic, des
 
 Insert descriptive text and schematic(s) of your implementation.
 
+![Sketch](images/Sketch1.png)
+
 ## Software description
 
 Put flowchats of your algorithm(s). Write descriptive text of your libraries and source files. Put direct links to these files in `src` or `lib` folders.
