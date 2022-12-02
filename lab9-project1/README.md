@@ -41,6 +41,7 @@ Next, it processes the ADC conversion of two channels in turn using the `switch.
 
 ![2](images/pos2.PNG) ![2](images/UART2.PNG)
 
+![3](images/main2.PNG)
 
 ## Video
 
