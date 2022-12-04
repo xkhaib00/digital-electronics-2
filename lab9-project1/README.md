@@ -45,7 +45,7 @@ Next, it processes the ADC conversion of two channels in turn using the `switch.
 
 ## Video
 
-Insert a link to a short video with your practical implementation example (1-3 minutes, e.g. on YouTube).
+https://youtu.be/jr4P54etUgs
 
 ## References
 
