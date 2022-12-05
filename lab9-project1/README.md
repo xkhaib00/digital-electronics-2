@@ -5,7 +5,7 @@ Application of analog joy-stick (2 ADC channels, 1 push button), rotary encoder,
 ### Team members
 
 * Rishat Khaibullin (responsible for making joystick and LCD part of project, schematic of project and it description)
-* Marian Dvořáček (responsible for making encoder and LCD part of project, flowcharts of all functions)
+* Marian Dvořáček (responsible for making encoder and LCD part of project, flowcharts of functions)
 
 ## Hardware description
 
