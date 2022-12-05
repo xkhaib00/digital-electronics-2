@@ -49,5 +49,5 @@ https://youtu.be/jr4P54etUgs
 
 ## References
 
-1. Write your text here.
-2. ...
+1. Presentations of lecture
+2. Labs files
