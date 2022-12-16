@@ -1,4 +1,4 @@
-# Project 1
+# Project 2
 
 Application of analog joy-stick (2 ADC channels, 1 push button), rotary encoder, and Digilent PmodCLP LCD module.
 
