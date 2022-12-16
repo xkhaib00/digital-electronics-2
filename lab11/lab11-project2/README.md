@@ -19,10 +19,9 @@ In this project, we used:
 5. LED
 6. Resistor (around 150 ohm)
 
-The Arduino served as the core of the project. The joystick moves the cursor/symbol on the LCD display size 16x2. By turning the encoder, the user can select different symbol from the ASCII table. It is worth noting that when choosing symbols, there are no custom symbols that are initially empty. When you press the enecoder button, the value of the symbol is returned to the beginning of the list for convenience, i.e. to the symbol `!`. When you press the joystick button, the value of this given character will appear on the screen, in our case it is the character `0xef`. Also in the project was used LED with a resistor to indicate the operation of the ADC conversion.
+The Arduino board is capable of generating a PWM signal. For a short time, voltage is applied to the pin, and then nothing is applied, if in this way the voltage is applied and turned off on the pin with a constant frequency, then we will get a PWM signal. The ratio of the duration of the high voltage level and the duration of the low voltage is called the duty cycle. For example, if you apply voltage for 0.5s to a pin and turn it off for 1.5s (period of 2s), then the duty cycle will be 25%, so if an LED with a resistor is connected to this pin, the LED will glow at 25% of its power /brightness. This is the principle of the PWM signal.
 
-
-![Sketch](images/Sketch1.png)
+![Sketch](images/Sketch2.png)
 
 ## Software description
 
