@@ -27,7 +27,7 @@ The Arduino board is capable of generating a PWM signal. For a short time, volta
 
 ## Software description
 
-The main function code was 280 lines. The entire program used 171 bytes (8.3%) of RAM and 1818 bytes (5.6%) of Flash.
+The main function code was 255 lines. The entire program used 42 bytes (2.1%) of RAM and 2174 bytes (6.7%) of Flash.
 
 
 ![1](images/pos1.PNG)
