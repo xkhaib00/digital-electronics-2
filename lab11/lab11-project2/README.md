@@ -27,8 +27,9 @@ The Arduino board is capable of generating a PWM signal. For a short time, volta
 
 ## Software description
 
-The main function code was 255 lines. The entire program used 42 bytes (2.1%) of RAM and 2174 bytes (6.7%) of Flash.
+The main function code was 254 lines. The entire program used 42 bytes (2.1%) of RAM and 2174 bytes (6.7%) of Flash.
 
+To begin with, let's consider the main function, where the ports are configured, the LCD is initialized, as well as the configuration of registers for ADC conversion and the configuration of registers for the PWM signal. The program used a 16-bit Timer1 with 256 prescale, for which the overflow interrupt routine was enabled. We used a 10-bit phase corrected PWM and a non-inverted mode for the registers.
 
 ![1](images/pos1.PNG)
 
