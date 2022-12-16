@@ -31,6 +31,12 @@ The main function code was 254 lines. The entire program used 42 bytes (2.1%) of
 
 To begin with, let's consider the main function, where the ports are configured, the LCD is initialized, as well as the configuration of registers for ADC conversion and the configuration of registers for the PWM signal. The program used a 16-bit Timer1 with 256 prescale, for which the overflow interrupt routine was enabled. We used a 10-bit phase corrected PWM and a non-inverted mode for the registers.
 
+The core of the program for processing a PWM signal is the convertAngleToDeegrees function, where data is sent for processing. Before the start, a servo calibration was carried out, where we found out that setting the servo to the initial position (0 degrees) is min_servo = 16, and for the final position (180 degrees) it is max_servo = 74 (these figures may differ when using other types of servos or another timer). Since we need to control two servos, we used the vertical axis of the joystick for one servo and the horizontal axis for the other servo. The convertAngleToDeegrees function first calculates the number of steps required to cover the entire distance, then calculates the angle of rotation by one degree. And if the actual PWM value changes, then the servos are set in motion (that is, the duty cycle readings for a certain angle change).
+
+In the ADC_vect function, the changes in the joystick movement vertically and horizontally, as well as when the joystick button is pressed, are determined. When you press the button, the servo position moves to the middle (90 degrees). With each change in the position of the joystick, an ADC conversion is performed, as well as indicators of the angle of inclination are written out on the LCD display.
+
+This way we can control two servos with one joystick. Such control can be carried out in various other projects, for example, for driving a vehicle.
+
 ![1](images/pos1.PNG)
 
 ## Video
