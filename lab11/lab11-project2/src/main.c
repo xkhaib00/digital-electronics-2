@@ -5,7 +5,7 @@
 #include <stdlib.h>         // C library. Needed for number conversions
 #include <lcd.h>            // Peter Fleury's LCD library
 #include <util/delay.h>     // Functions for busy-wait delay loops
-#include <string.h>         //standard library for strings
+#include <string.h>         // Standard library for strings
 
 #define SW   PD2            // Pin D2  - Digital pin for button on Joystick
 #define LED  PB5            // Pin D13 - LED indicate
@@ -112,7 +112,7 @@ int main(void)
     // reset timer settings
     TCCR1A = 0;
     TCCR1B = 0;
-    // set PWM pin as output
+    // set PWM pin as output (D9 and D10)
     DDRB |= (1<<PB2) | (1<<PB1);
     // set timer mode Phase Correct PWM, 10 bit
     TCCR1A &= ~(1<<WGM13)| (1<<WGM12); TCCR1A |= (1<<WGM11) | (1<<WGM10);       // Phase Correct PWM 10 bit with TOP=0x03FF
