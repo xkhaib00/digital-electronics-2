@@ -119,8 +119,8 @@ int main(void)
     // set output mode
     TCCR1A |= (1<<COM1A1);                  // non-inverting mode for OCR1A
     TCCR1A |= (1<<COM1B1);                  // non-inverting mode for OCR1B
-    // set prescaller
-    TCCR1B &= ~((1<<CS11) | (1<<CS10)); TCCR1B |= (1<<CS12);        // Prescaler 256          
+    // set prescaller to 256
+    TCCR1B &= ~((1<<CS11) | (1<<CS10)); TCCR1B |= (1<<CS12);                  
    
     // Enables interrupts by setting the global interrupt mask
     sei();
