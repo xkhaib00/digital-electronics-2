@@ -1,11 +1,11 @@
 # Project 2
 
-Application of analog joy-stick (2 ADC channels, 1 push button), rotary encoder, and Digilent PmodCLP LCD module.
+Precise generation of several PWM channels. Application of two (or more) Servo motors SG90.
 
 ### Team members
 
-* Rishat Khaibullin (responsible for making joystick and LCD part of project, schematic of project and it description)
-* Marian Dvořáček (responsible for making encoder and LCD part of project, flowcharts of functions)
+* Rishat Khaibullin (responsible for making joystick part of project, schematic of project and it description)
+* Marian Dvořáček (responsible for making servo and LCD part of project, flowcharts of functions)
 
 ## Hardware description
 
@@ -14,7 +14,7 @@ The main goal of our project was to study the use of given components and create
 In this project, we used:
 1. Arduino UNO
 2. Joy-stick (2 ADC channels, 1 push button)
-3. Rotary encoder (2 digital channels, 1 push button)
+3. 2x Servo motors SG90 (1 digital channel)
 4. Digilent PmodCLP LCD module
 5. LED
 6. Resistor (around 150 ohm)
