@@ -1,6 +1,6 @@
 # Project 2
 
-Precise generation of several PWM channels. Application of two (or more) Servo motors SG90.
+Precise generation of several PWM channels. Application of two Servo motors SG90.
 
 ### Team members
 
