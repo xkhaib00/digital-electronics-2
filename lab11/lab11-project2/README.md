@@ -9,7 +9,7 @@ Precise generation of several PWM channels. Application of two (or more) Servo m
 
 ## Hardware description
 
-The main goal of our project was to study the use of given components and create a common system.
+The goal of this project was to generate a PWM signal using an Arduino board. We used part of the code from the first project, namely joystick manipulation, that is, ADC conversion, displaying data on the LCD and signaling on the LED (for clarity). From the mechanical part, two servo motors were added to the project.
 
 In this project, we used:
 1. Arduino UNO
