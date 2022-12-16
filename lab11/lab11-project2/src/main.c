@@ -58,9 +58,7 @@ uint16_t convertAngleToDeegrees(uint16_t PWM_value, uint16_t PWM_min_value, uint
     else
     {
         convertedAngle = max_angle_of_servo;
-    }
-    
-    
+    }       
     return (uint16_t) round(convertedAngle);
 }
 
@@ -126,7 +124,6 @@ int main(void)
    
     // Enables interrupts by setting the global interrupt mask
     sei();
-
     
     // Infinite loop
     while (1)       
