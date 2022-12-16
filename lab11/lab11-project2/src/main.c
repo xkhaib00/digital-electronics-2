@@ -78,11 +78,11 @@ int main(void)
     servo_v = min_servo_v;                           // init PWM value for vartical servo
     servo_h = min_servo_h;                           // init PWM value for horizontal servo
 
-    // uart_init(UART_BAUD_SELECT(9600, F_CPU));       // Initialize USART to asynchronous, 8N1, 9600
-    lcd_init(LCD_DISP_ON);                          // Initialize LCD display without any cursor
+    // Initialize LCD display without any cursor
+    lcd_init(LCD_DISP_ON);                          
     lcd_gotoxy(0,0);
 
-    // lcd init
+    // Primary inscription on the LCD
     lcd_puts("ANGLE V: 0 deg");
     lcd_gotoxy(0,1);
     lcd_puts("ANGLE H: 0 deg");
@@ -143,8 +143,7 @@ int main(void)
 
 ISR(TIMER1_OVF_vect)
 {
-    ADCSRA |= (1<<ADSC);                             // Start ADC conversion 
-                                   
+    ADCSRA |= (1<<ADSC);                             // Start ADC conversion                                    
 }
 
 /**********************************************************************
