@@ -37,7 +37,7 @@ In the ADC_vect function, the changes in the joystick movement vertically and ho
 
 This way we can control two servos with one joystick. Such control can be carried out in various other projects, for example, for driving a vehicle.
 
-![1](images/1.PNG)
+![1](images/1.png)
 ![1](images/2.PNG)
 ![1](images/3.PNG)
 
