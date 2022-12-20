@@ -40,7 +40,7 @@ This way we can control two servos with one joystick. Such control can be carrie
 ![1](images/1.png)
 ![1](images/2.PNG)
 ![1](images/3.PNG)
-![1](images/4.PNG)
+![1](images/42.PNG)
 
 ## Video
 
